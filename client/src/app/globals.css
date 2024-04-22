@@ -21,3 +21,7 @@ h1 {
 p {
     @apply text-base font-light text-black;
 }
+
+.diagonal-rounded {
+    border-radius: 20% 5% 20% 5%;
+  }

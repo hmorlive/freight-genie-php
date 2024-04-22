@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="flex flex-col text-center items-center md:items-end mt-4 md:mt-0 gap-2">
           <p className="mb-2 font-normal text-sm text-center">
             &copy; {new Date().getFullYear()} Freight Genie by Hazmed
-            Moreno. All rights reserved.
+            Moreno. This is a demo application. All rights reserved.
           </p>
         </div>
         <Link

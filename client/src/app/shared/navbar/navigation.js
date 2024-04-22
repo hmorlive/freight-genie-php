@@ -58,7 +58,7 @@ export default function Navigation() {
           title="Go to home page"
           className={`flex items-center z-30`}
         >
-          <img src="logo.png" alt="Freight Genie Logo" className="w-[120px] h-auto max-w-1/2" />
+          <img src="logo.png" alt="Freight Genie Logo" className="w-[120px] h-auto max-w-1/2 diagonal-rounded" />
         </Link>
         <button
           aria-label="toggle navigation menu"
