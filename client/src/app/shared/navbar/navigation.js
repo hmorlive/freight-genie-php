@@ -51,14 +51,15 @@ export default function Navigation() {
       } flex justify-center items-center sticky top-0 z-20`}
     >
       <nav
-        className={`bg-opacity-95 flex items-start w-full p-5 md:p-4 justify-between md:rounded-md`}
+        className={`bg-opacity-95 flex items-center w-full p-5 md:p-4 justify-between md:rounded-md`}
       >
         <Link
           href={"/"}
           title="Go to home page"
-          className={`flex items-center z-30`}
+          className={`flex gap-2 items-center z-30`}
         >
-          <img src="logo.png" alt="Freight Genie Logo" className="w-[120px] h-auto max-w-1/2 diagonal-rounded" />
+          <img src="logo.png" alt="Freight Genie Logo" className="w-[60px] h-auto max-w-1/2 diagonal-rounded" />
+          <span className="text-3xl font-bold text-sky-600">FreightGenie</span>
         </Link>
         <button
           aria-label="toggle navigation menu"
@@ -67,7 +68,7 @@ export default function Navigation() {
         >
           <FontAwesomeIcon
             icon={openMenu ? faTimes : faBars}
-            className={`${openMenu ? "text-black" : "text-white"} fa-lg`}
+            className={`text-black fa-lg`}
           />
         </button>
         <div
@@ -82,6 +83,12 @@ export default function Navigation() {
               openMenu ? "p-4 pt-[10vh]" : null
             } flex ml-0 list-none text-xl flex-col gap-20  sm:gap-6 justify-start overflow-scroll md:overflow-visible md:justify-center items-center h-full md:flex-row md:text-sm`}
           >
+            <NavItem
+              title="Home"
+              href="/"
+              closeMenuAndNavigate={closeMenuAndNavigate}
+            />
+            <NavItem title={"Contact"} href="/contact" closeMenuAndNavigate={closeMenuAndNavigate} />
             <NavItem
               title="About"
               href="/about"

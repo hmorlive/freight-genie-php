@@ -8,8 +8,15 @@ export default function Footer() {
       <div className="w-full flex justify-between align-center">
         <p>© 2024 Freight Genie</p>
         <ul className="list-none flex items-center text-xs">
-          <li className="mx-2 hover:cursor-pointer">Privacy</li>
-          <li className="mx-2 ">Terms</li>
+          <li className="mx-2">
+            <Link href="/privacy">Privacy Policy</Link>
+          </li>
+          <li className="mx-2">
+            <Link href="/terms">Terms and Conditions</Link>
+          </li>
+          <li className="mx-2">
+            <Link href="/contact">Contact Us</Link>
+          </li>
         </ul>
       </div>
       <hr className="w-full md:w-1/3 border-1 border-gray-200 my-2" />

@@ -71,8 +71,8 @@ export function NavItem({ title, href, closeMenuAndNavigate }) {
 export function NavButton({ title, href, closeMenuAndNavigate }) {
   if (!title || !href) return null;
   return (
-    <li className="btn">
-      <Link href={href} onClick={() => closeMenuAndNavigate({ href })}>
+    <li>
+      <Link href={href}  className="btn" onClick={() => closeMenuAndNavigate({ href })}>
         {title}
       </Link>
     </li>

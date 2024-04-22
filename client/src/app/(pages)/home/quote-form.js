@@ -85,9 +85,8 @@ export default function QuoteForm() {
             on
             <input type="date" />
           </label>
-          <button className="btn">Get Rates</button>
+          <button className="btn-orange mt-auto">Get Rates</button>
         </div>
-        <hr className="w-full border-t my-2 border-gray-300" />
         <Disclaimer />
       </form>
     </section>
