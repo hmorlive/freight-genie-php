@@ -55,3 +55,7 @@ section {
 .section {
     @apply w-full max-w-7xl py-10 mx-auto
 }
+
+.error {
+  @apply text-red-500 border-red-500 border;
+}

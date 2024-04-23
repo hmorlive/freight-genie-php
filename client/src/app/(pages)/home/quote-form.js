@@ -3,21 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 export default function QuoteForm() {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      freightType: "",
-      shippingDate: "",
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
-      freightType: Yup.string().required("Required"),
-      shippingDate: Yup.date().required("Required"),
-    }),
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const date = new Date();
+
   const freightOptions = [
     { value: "ftl", label: "Full Truckload (FTL)" },
     { value: "ltl", label: "Less Than Truckload (LTL)" },
@@ -31,6 +18,30 @@ export default function QuoteForm() {
     { value: "fragile", label: "Fragile Items" },
     { value: "oversized", label: "Oversized Loads" },
   ];
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      freightType: "",
+      goodsType: "",
+      shippingDate: `${
+        date.getMonth() + 1
+      }-${date.getDate()}-${date.getFullYear()}`,
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email address").required("Required"),
+      freightType: Yup.string()
+        .oneOf(freightOptions.map((option) => option.value))
+        .required("Required"),
+      goodsType: Yup.string()
+        .oneOf(goodsOptions.map((option) => option.value))
+        .required("Required"),
+      shippingDate: Yup.date().required("Required"),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
     <section className="relative w-full flex flex-col items-center justify-center min-h-[60vh] py-10 bg-black">
@@ -46,21 +57,36 @@ export default function QuoteForm() {
         <div className="flex gap-2 flex-col lg:flex-row">
           <label>
             email
-            <input type="text" placeholder="Enter your email" />
+            <input
+              type="text"
+              placeholder="Enter your email"
+              id="email"
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className={
+                formik.errors.email && formik.touched.email ? "error" : ""
+              }
+            />
           </label>
           <label>
             options
             <select
               id="goodsType"
               name="goodsType"
-              className="selector"
-              onChange={(event) =>
-                formik.setFieldValue("goodsType", event.target.value)
+              className={
+                formik.errors.goodsType && formik.touched.goodsType ? "error" : ""
+              }
+              onChange={formik.handleChange
               }
               onBlur={formik.handleBlur}
               value={formik.values.goodsType}
+              
             >
-              <option value="">Select Goods Type</option>{" "}
+              <option value="" disabled>
+                Select Goods Type
+              </option>{" "}
               {/* Placeholder option */}
               {goodsOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -71,21 +97,43 @@ export default function QuoteForm() {
           </label>
           <label>
             shipping
-            <select id="freightType" name="freightType" className="selector">
-                <option value="">Select Freight Type</option>{" "}
-                {/* Placeholder option */}
-                {freightOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                    {option.label}
-                    </option>
-                ))}
+            <select
+              id="freightType"
+              name="freightType"
+              value={formik.values.freightType}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className={
+                formik.errors.freightType && formik.touched.freightType ? "error" : ""
+              }
+            >
+              <option value="" disabled>
+                Select Freight Type
+              </option>{" "}
+              {/* Placeholder option */}
+              {freightOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </label>
           <label>
             on
-            <input type="date" />
+            <input
+              type="date"
+              id="shippingDate"
+              name="shippingDate"
+              value={formik.values.shippingDate}
+              onChange={(event) =>
+                formik.setFieldValue("shippingDate", event.target.value)
+              }
+              onBlur={formik.handleBlur}
+            />
           </label>
-          <button className="btn-orange mt-auto">Get Rates</button>
+          <button type="submit" className="btn-orange mt-auto">
+            Get Rates
+          </button>
         </div>
         <Disclaimer />
       </form>
