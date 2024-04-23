@@ -12,3 +12,6 @@ Freight Genie is a demo application that allows users to request quotes for frei
 - SlimPHP
 - TailwindCSS
 - SQLite3
+- Serverless Framework
+- Bref PHP
+- AWS (API Gateway, EFS, Lambda)
