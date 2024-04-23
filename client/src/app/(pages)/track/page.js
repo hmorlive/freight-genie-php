@@ -1,5 +1,10 @@
+import { Suspense } from "react";
 import Interactive from "./interactive";
 
 export default function Track() {
-  return <Interactive />;
+  return (
+    <Suspense>
+      <Interactive />
+    </Suspense>
+  );
 }
