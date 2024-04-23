@@ -1,9 +1,11 @@
 "use client";
 import { submitQuoteRequest } from "@/app/api-calls";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 
 export default function QuoteForm() {
+  const router = useRouter();
   // get the current date
   const formatDate = (date) => {
     const d = new Date(date);  
@@ -54,9 +56,12 @@ export default function QuoteForm() {
     onSubmit: async (values) => {
       try {
         const response = await submitQuoteRequest(values);
-        console.log(response);
+        if (!response.ok) {
+          throw new Error("Failed to submit quote request");
+        }
+        router.push(`/track/?email=${encodeURIComponent(values.email)}`);
       } catch (error) {
-        
+        console.error(error);
       }
     },
   });
