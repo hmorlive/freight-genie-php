@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS quotes (
     shipping_date DATE NOT NULL,
     freight_type TEXT NOT NULL CHECK(freight_type IN ('ftl', 'ltl', 'partial', 'intermodal')),
     goods_type TEXT NOT NULL CHECK(goods_type IN ('general', 'perishable', 'hazardous', 'fragile', 'oversized')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     vendor_id INTEGER NOT NULL,
     FOREIGN KEY (vendor_id) REFERENCES vendors(id)
 );
