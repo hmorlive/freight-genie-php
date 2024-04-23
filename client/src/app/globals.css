@@ -9,7 +9,20 @@ label {
 label input,
 label select,
 label select option {
-  @apply font-normal text-base rounded-md border border-gray-300 bg-transparent text-white p-2 w-full sm:w-[300px] max-w-full box-border min-h-12;
+  @apply font-normal text-base rounded-md border border-gray-300 bg-transparent text-white p-2 w-full max-w-full box-border min-h-12;
+}
+
+
+.email {
+  @apply sm:w-[250px]
+}
+
+.zip {
+  @apply sm:w-[130px]
+}
+
+label input[type=date] {
+  @apply w-fit;
 }
 
 .__btn {

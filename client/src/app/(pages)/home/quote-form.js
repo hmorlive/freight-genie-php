@@ -3,8 +3,19 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 export default function QuoteForm() {
-  const date = new Date();
+  // get the current date
+  const formatDate = (date) => {
+    const d = new Date(date);  
+    const month = `0${d.getMonth() + 1}`.slice(-2);
+    const day = `0${d.getDate()}`.slice(-2);
+    const year = d.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
 
+  console.log(formatDate(new Date()));
+  
+
+  // set the freight and goods options
   const freightOptions = [
     { value: "ftl", label: "Full Truckload (FTL)" },
     { value: "ltl", label: "Less Than Truckload (LTL)" },
@@ -19,14 +30,15 @@ export default function QuoteForm() {
     { value: "oversized", label: "Oversized Loads" },
   ];
 
+  // formik form state
   const formik = useFormik({
     initialValues: {
       email: "",
       freightType: "",
       goodsType: "",
-      shippingDate: `${
-        date.getMonth() + 1
-      }-${date.getDate()}-${date.getFullYear()}`,
+      from: "",
+      to: "",
+      shippingDate: formatDate(new Date()),
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),
@@ -36,6 +48,8 @@ export default function QuoteForm() {
       goodsType: Yup.string()
         .oneOf(goodsOptions.map((option) => option.value))
         .required("Required"),
+      from: Yup.string().length(5, "Invalid zip code").required("Required"),
+      to: Yup.string().length(5, "Invalid zip code").required("Required"),
       shippingDate: Yup.date().required("Required"),
     }),
     onSubmit: (values) => {
@@ -51,7 +65,7 @@ export default function QuoteForm() {
         className="bg-transparent relative z-10 flex gap-2 flex-col"
         onSubmit={formik.handleSubmit}
       >
-        <h1 className="text-3xl font-semibold text-orange-600">
+        <h1 className="text-4xl font-semibold text-orange-600 mb-2">
           Rates in <span className="text-bold text-sky-500">Seconds</span>
         </h1>
         <div className="flex gap-2 flex-col lg:flex-row">
@@ -66,7 +80,7 @@ export default function QuoteForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               className={
-                formik.errors.email && formik.touched.email ? "error" : ""
+                `email ${formik.errors.email && formik.touched.email ? "error" : ""}`
               }
             />
           </label>
@@ -125,10 +139,38 @@ export default function QuoteForm() {
               id="shippingDate"
               name="shippingDate"
               value={formik.values.shippingDate}
-              onChange={(event) =>
-                formik.setFieldValue("shippingDate", event.target.value)
-              }
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+            />
+          </label>
+          <label>
+            from
+            <input
+              type="text"
+              placeholder="Origin Zip"
+              id="from"
+              name="from"
+              value={formik.values.from}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className={
+                `zip ${formik.errors.from && formik.touched.from ? "error" : ""}`
+              }
+            />
+          </label>
+          <label>
+            to
+            <input
+              type="text"
+              placeholder="Destination Zip"
+              id="to"
+              name="to"
+              value={formik.values.to}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className={
+                `zip ${formik.errors.to && formik.touched.to ? "error" : ""}`
+              }
             />
           </label>
           <button type="submit" className="btn-orange mt-auto">
