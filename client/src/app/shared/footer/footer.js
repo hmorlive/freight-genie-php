@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-white p-4 flex flex-col items-center justify-between">
-      <div className="w-full flex justify-between align-center">
+      <div className="w-full flex flex-col md:flex-row items-center md:justify-between align-center gap-3">
         <p>© 2024 Freight Genie</p>
         <ul className="list-none flex items-center text-xs">
           <li className="mx-2">
@@ -13,9 +13,6 @@ export default function Footer() {
           </li>
           <li className="mx-2">
             <Link href="/terms">Terms and Conditions</Link>
-          </li>
-          <li className="mx-2">
-            <Link href="/contact">Contact Us</Link>
           </li>
         </ul>
       </div>

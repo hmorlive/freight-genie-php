@@ -3,38 +3,38 @@
 @tailwind utilities;
 
 label {
-  @apply font-semibold text-xs flex flex-col text-white;
+  @apply font-semibold text-xs flex flex-col;
 }
 
 label input,
 label select,
 label select option {
-  @apply font-normal text-base rounded-md border border-gray-300 bg-transparent text-white p-2 w-full max-w-full box-border min-h-12;
+  @apply font-normal text-base rounded-md border border-gray-300 bg-transparent p-2 w-full max-w-full box-border min-h-12 focus:outline-none focus:shadow focus:border-sky-500 focus:ring-0;
 }
 
 
 .email {
-  @apply sm:w-[250px]
+  @apply lg:w-[250px]
 }
 
 .zip {
-  @apply sm:w-[130px]
+  @apply lg:w-[130px]
 }
 
 label input[type=date] {
-  @apply w-fit;
+  @apply lg:w-fit;
 }
 
 .__btn {
-  @apply px-6 sm:max-w-[160px] py-2 text-white hover:cursor-pointer h-fit text-lg w-full;
+  @apply px-6 lg:max-w-[160px] py-2 text-white hover:cursor-pointer h-fit text-lg w-full;
 }
 
 .btn {
-    @apply __btn hover:bg-sky-600 rounded-md bg-sky-700;
+    @apply __btn hover:from-sky-600 hover:to-blue-600 rounded-md bg-gradient-to-tl from-sky-700 to-blue-600;
 }
 
 .btn-orange {
-    @apply __btn bg-orange-600 rounded-md hover:bg-orange-700 font-bold;
+    @apply __btn bg-gradient-to-tl from-yellow-600 to-orange-700 rounded-md hover:from-yellow-600 hover:to-orange-600 font-bold;
 }
 
 h1, h2 {
@@ -61,12 +61,8 @@ p {
   @apply leading-8 text-sm text-slate-600;
 }
 
-section {
-  @apply p-4;
-}
-
 .section {
-    @apply w-full max-w-7xl py-10 mx-auto
+    @apply w-full max-w-7xl py-10 mx-auto p-4;
 }
 
 .error {

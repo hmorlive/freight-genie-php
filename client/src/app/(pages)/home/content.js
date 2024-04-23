@@ -21,7 +21,7 @@ export default function HomePageContent() {
           deliver value to our customers through our extensive network of
           carriers, advanced technology, and experienced team of professionals.
         </p>
-        <div className="w-full flex gap-2 flex-wrap flex-col md:flex-row items-center justify-center my-10 p-4">
+        <div className="w-full flex gap-2 flex-wrap flex-col xl:flex-row items-center justify-center my-10 p-4">
           <IconCard
             icon={faTruck}
             title="Fast Delivery"
@@ -51,7 +51,7 @@ export default function HomePageContent() {
       <section className="section">
         <h2 className="mb-3">Looking to <span className="text-sky-600">track</span> your order?</h2>
         <p>
-          You can track your loads or quote request <Link href="/track" className="text-sky-600 font-bold underline">here</Link>
+          You can track your loads or quote request <Link href="/track" className="text-sky-700 font-bold underline">here</Link>
           </p>
       </section>
     </>

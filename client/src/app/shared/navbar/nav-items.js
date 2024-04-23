@@ -68,11 +68,11 @@ export function NavItem({ title, href, closeMenuAndNavigate }) {
 }
 
 // renders a navigation button
-export function NavButton({ title, href, closeMenuAndNavigate }) {
+export function NavButton({ title, href, closeMenuAndNavigate, alternateScheme = false }) {
   if (!title || !href) return null;
   return (
     <li>
-      <Link href={href}  className="btn" onClick={() => closeMenuAndNavigate({ href })}>
+      <Link href={href}  className={alternateScheme ? "btn" : "btn-orange"} onClick={() => closeMenuAndNavigate({ href })}>
         {title}
       </Link>
     </li>

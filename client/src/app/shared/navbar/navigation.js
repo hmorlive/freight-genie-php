@@ -58,7 +58,11 @@ export default function Navigation() {
           title="Go to home page"
           className={`flex gap-2 items-center z-30`}
         >
-          <img src="logo.png" alt="Freight Genie Logo" className="w-[60px] h-auto max-w-1/2 diagonal-rounded" />
+          <img
+            src="logo.png"
+            alt="Freight Genie Logo"
+            className="w-[60px] h-auto max-w-1/2 diagonal-rounded"
+          />
           <span className="text-3xl font-bold text-sky-600">FreightGenie</span>
         </Link>
         <button
@@ -83,20 +87,15 @@ export default function Navigation() {
               openMenu ? "p-4 pt-[10vh]" : null
             } flex ml-0 list-none text-xl flex-col gap-20  sm:gap-6 justify-start overflow-scroll md:overflow-visible md:justify-center items-center h-full md:flex-row md:text-sm`}
           >
-            <NavItem
-              title="Home"
-              href="/"
-              closeMenuAndNavigate={closeMenuAndNavigate}
-            />
-            <NavItem title={"Contact"} href="/contact" closeMenuAndNavigate={closeMenuAndNavigate} />
-            <NavItem
-              title="About"
-              href="/about"
-              closeMenuAndNavigate={closeMenuAndNavigate}
-            />
             <NavButton
               title="Track"
               href="/track"
+              closeMenuAndNavigate={closeMenuAndNavigate}
+              alternateScheme={true}
+            />
+            <NavButton
+              title="Quote"
+              href="/"
               closeMenuAndNavigate={closeMenuAndNavigate}
             />
           </ul>

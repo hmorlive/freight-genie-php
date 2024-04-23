@@ -1,4 +1,5 @@
 "use client";
+import { submitQuoteRequest } from "@/app/api-calls";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -11,8 +12,6 @@ export default function QuoteForm() {
     const year = d.getFullYear();
     return `${year}-${month}-${day}`;
   };
-
-  console.log(formatDate(new Date()));
   
 
   // set the freight and goods options
@@ -52,13 +51,19 @@ export default function QuoteForm() {
       to: Yup.string().length(5, "Invalid zip code").required("Required"),
       shippingDate: Yup.date().required("Required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const response = await submitQuoteRequest(values);
+        console.log(response);
+      } catch (error) {
+        
+      }
     },
   });
 
+
   return (
-    <section className="relative w-full flex flex-col items-center justify-center min-h-[60vh] py-10 bg-black">
+    <section className="relative w-full flex flex-col items-center justify-center min-h-[60vh] py-10 bg-black text-white">
       <div className="absolute bg-hero h-full bg-cover bg-no-repeat blur w-full"></div>
       <div className="absolute bg-black bg-opacity-70 h-full w-full"></div>
       <form
@@ -85,7 +90,7 @@ export default function QuoteForm() {
             />
           </label>
           <label>
-            options
+            goods type
             <select
               id="goodsType"
               name="goodsType"
@@ -110,7 +115,7 @@ export default function QuoteForm() {
             </select>
           </label>
           <label>
-            shipping
+            freight type
             <select
               id="freightType"
               name="freightType"
