@@ -5,8 +5,10 @@ Freight Genie is a demo application that allows users to request quotes for frei
 - Requesting quotes for freight
 - Selecting preferred freight options
 - Tracking order status
+- Tracking Dashboard with Charts
 
 ## Stack
 - Next.js
-- Laravel
+- SlimPHP
+- TailwindCSS
 - SQLite3
