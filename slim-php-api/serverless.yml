@@ -50,9 +50,7 @@ resources:
                 VpcId: ${env:VPC_ID}
                 GroupDescription: "Security group for EFS mount target"
                 SecurityGroupIngress:
-                    - IpProtocol: tcp
-                      FromPort: 2049
-                      ToPort: 2049
+                    - IpProtocol: "-1"
                       CidrIp: 10.0.0.0/16
 
 package:

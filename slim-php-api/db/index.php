@@ -30,7 +30,7 @@ function initializeDB($path) {
         $pdo = new PDO("sqlite:$path");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sqlPath = __DIR__ . '/mnt/efs/setup.sql';
+        $sqlPath = __DIR__ . '/setup.sql';
         if (!file_exists($sqlPath)) {
             throw new Exception('SQL file for database setup not found at ' . $sqlPath);
         }
