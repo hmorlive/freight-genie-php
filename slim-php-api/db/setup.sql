@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS quotes (
     freight_type TEXT NOT NULL CHECK(freight_type IN ('ftl', 'ltl', 'partial', 'intermodal')),
     goods_type TEXT NOT NULL CHECK(goods_type IN ('general', 'perishable', 'hazardous', 'fragile', 'oversized')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    vendor_id INTEGER NOT NULL,
+    vendor_id INTEGER,
     FOREIGN KEY (vendor_id) REFERENCES vendors(id)
 );
 

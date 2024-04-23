@@ -81,11 +81,11 @@ return function (App $app) {
         $statement->execute([
             ':quote_id' => $quote_id,
             ':email' => $data['email'],
-            ':from_location' => $data['from_location'],
-            ':to_location' => $data['to_location'],
-            ':shipping_date' => $data['shipping_date'],
-            ':freight_type' => $data['freight_type'],
-            ':goods_type' => $data['goods_type']
+            ':from_location' => $data['from'],
+            ':to_location' => $data['to'],
+            ':shipping_date' => $data['shippingDate'],
+            ':freight_type' => $data['freightType'],
+            ':goods_type' => $data['goodsType']
         ]);
 
         // Success response
