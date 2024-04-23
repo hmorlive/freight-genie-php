@@ -17,27 +17,23 @@ return function (App $app) {
     });
 
     // get quotes from email
-    $app->get('/{email}', function (Request $request, Response $response, $args) {
-        // Retrieve email from the route parameter
-        $email = $args['email'];
+    $app->post('/quotes/all', function (Request $request, Response $response) {
+        $data = $request->getParsedBody();
+        $email = $data['email'] ?? null;
     
-        // Create an email validator
         $email_validator = v::email();
-    
-        // Validate the email
-        if (!$email_validator->validate($email)) {
+        if (!$email || !$email_validator->validate($email)) {
             $error = json_encode(['error' => 'Invalid email']);
             $response->getBody()->write($error);
             return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
         }
     
-        // Assuming successful validation continues here
-        $success = json_encode(['message' => 'Valid email']);
+        $success = json_encode(['message' => 'Email is valid']);
         $response->getBody()->write($success);
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
-    });
-    
-    $app->post('/quote', function (Request $request, Response $response) {
+    });    
+
+    $app->post('/quote/request', function (Request $request, Response $response) {
         // get body data
         $data = $request->getParsedBody();
         // Validators
