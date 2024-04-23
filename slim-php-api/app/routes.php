@@ -16,6 +16,27 @@ return function (App $app) {
         return $response;
     });
 
+    // get quotes from email
+    $app->get('/{email}', function (Request $request, Response $response, $args) {
+        // Retrieve email from the route parameter
+        $email = $args['email'];
+    
+        // Create an email validator
+        $email_validator = v::email();
+    
+        // Validate the email
+        if (!$email_validator->validate($email)) {
+            $error = json_encode(['error' => 'Invalid email']);
+            $response->getBody()->write($error);
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+        }
+    
+        // Assuming successful validation continues here
+        $success = json_encode(['message' => 'Valid email']);
+        $response->getBody()->write($success);
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    });
+    
     $app->post('/quote', function (Request $request, Response $response) {
         // get body data
         $data = $request->getParsedBody();
@@ -24,13 +45,13 @@ return function (App $app) {
             'email' => v::email(),
             'from' => v::stringType()->length(1, null),
             'to' => v::stringType()->length(1, null),
-            'date' => v::date('Y-m-d'),
-            'freight_type' => v::in(['air', 'sea', 'land']),
-            'goods_type' => v::in(['perishable', 'non-perishable', 'hazardous']),
-            'quote' => v::stringType()->length(1, null),
+            'shippingDate' => v::date('Y-m-d'),
+            'freightType' => v::in(['ftl', 'ltl', 'partial', 'intermodal']),
+            'goodsType' => v::in(['general', 'perishable', 'hazardous', 'fragile', 'oversized']),
         ];
 
-        // Perform validation
+        $errors = [];
+
         foreach ($validators as $field => $validator) {
             if (isset ($data[$field]) && !$validator->validate($data[$field])) {
                 $errors[$field] = "Invalid value for {$field}.";
@@ -39,11 +60,10 @@ return function (App $app) {
             }
         }
 
-        echo $data;
-
         # if errors, return status: bad request
         if (count($errors) > 0) {
-            return $response->withStatus(400);
+            $response->getBody()->write(json_encode($errors));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
         }
 
         // return success

@@ -9,3 +9,9 @@ export function submitQuoteRequest(data) {
     body: JSON.stringify(data),
   });
 }
+
+export function getQuotes(email) {
+  return fetch(API_ENDPOINT + "/quote/" + email, {
+    method: "GET",
+  });
+}

@@ -1,4 +1,5 @@
 "use client";
+import { getQuotes } from "@/app/api-calls";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -11,8 +12,13 @@ export default function TrackForm() {
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        await getQuotes(values.email);
+      } catch (error) {
+        console.error(error);
+      }
+
     },
   });
 
