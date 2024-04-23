@@ -9,16 +9,28 @@ provider:
     memorySize: 256
     timeout: 15
     iamRoleStatements:
-      - Effect: "Allow"
-        Action:
-          - "elasticfilesystem:ClientMount"
-          - "elasticfilesystem:ClientWrite"
-        Resource: ${env:AP_ARN}
+        - Effect: "Allow"
+          Action:
+              - "elasticfilesystem:ClientMount"
+              - "elasticfilesystem:ClientWrite"
+          Resource: ${env:AP_ARN}
     vpc:
         securityGroupIds:
-        - Ref: EfsSecurityGroup
-        subnetIds: 
-        - ${env:SUBNET_ID}
+            - Ref: EfsSecurityGroup
+        subnetIds:
+            - ${env:SUBNET_ID}
+    httpApi:
+        cors:
+            allowedOrigins:
+                - "*"
+            allowedHeaders:
+                - "*"
+            allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - OPTIONS
+                - DELETE
 
 functions:
     web:
@@ -38,16 +50,16 @@ resources:
                 VpcId: ${env:VPC_ID}
                 GroupDescription: "Security group for EFS mount target"
                 SecurityGroupIngress:
-                - IpProtocol: tcp
-                  FromPort: 2049
-                  ToPort: 2049
-                  CidrIp: 10.0.0.0/16
+                    - IpProtocol: tcp
+                      FromPort: 2049
+                      ToPort: 2049
+                      CidrIp: 10.0.0.0/16
 
 package:
     patterns: # Exclude files from deployment
         - "!node_modules/**"
         - "!tests/**"
-        - "quotes/quotes-db.sqlite"
+        - "db/quotes-db.sqlite"
 
 plugins:
     - ./vendor/bref/bref
