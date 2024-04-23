@@ -9,16 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "chart.js": "^4.4.2",
     "formik": "^2.4.5",
     "next": "14.2.2",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "postcss": "^8",

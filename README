@@ -1,5 +1,5 @@
 # Freight Genie
-Freight Genie is a demo application that allows users to request quotes for freight and track their requests. It consists of a Next.js frontend and a Slim PHP api backend.
+Freight Genie is a demo application that allows users to request quotes for freight and track their requests. It consists of a Next.js frontend and a Slim PHP api with SQLite3 backend.
 
 ## Features
 - Requesting quotes for freight
@@ -9,4 +9,4 @@ Freight Genie is a demo application that allows users to request quotes for frei
 ## Stack
 - Next.js
 - Laravel
-- MySQL
+- SQLite3
