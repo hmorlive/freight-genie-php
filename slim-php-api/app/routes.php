@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use Respect\Validation\Validator as v;
+use db\db;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -18,18 +19,19 @@ return function (App $app) {
 
     // get quotes from email
     $app->post('/quotes/all', function (Request $request, Response $response) {
+        // get email from request
         $data = $request->getParsedBody();
         $email = $data['email'] ?? null;
     
+        // validate email
         $email_validator = v::email();
         if (!$email || !$email_validator->validate($email)) {
-            $error = json_encode(['error' => 'Invalid email']);
-            $response->getBody()->write($error);
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+            return $response->withStatus(400);
         }
     
-        $success = json_encode(['message' => 'Email is valid']);
-        $response->getBody()->write($success);
+        // fetch quotes from db
+        $statement = $db->prepare('SELECT * FROM quotes WHERE email = :email');
+
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
     });    
 
