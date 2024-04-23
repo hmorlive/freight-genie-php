@@ -4,8 +4,8 @@
 CREATE TABLE IF NOT EXISTS quotes (
     id TEXT PRIMARY KEY,
     email TEXT NOT NULL CHECK(email LIKE '%_@__%.__%'),
-    from_city TEXT NOT NULL,
-    to_city TEXT NOT NULL,
+    from_location TEXT NOT NULL,
+    to_location TEXT NOT NULL,
     shipping_date DATE NOT NULL,
     freight_type TEXT NOT NULL CHECK(freight_type IN ('ftl', 'ltl', 'partial', 'intermodal')),
     goods_type TEXT NOT NULL CHECK(goods_type IN ('general', 'perishable', 'hazardous', 'fragile', 'oversized')),
