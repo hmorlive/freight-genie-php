@@ -1,4 +1,4 @@
-const API_ENDPOINT = "http://localhost:8080"
+const API_ENDPOINT = "https://uj9ipxzw7j.execute-api.us-east-1.amazonaws.com"
 
 export function submitQuoteRequest(data) {
   return fetch(API_ENDPOINT + "/quote/request", {

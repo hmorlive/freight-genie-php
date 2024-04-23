@@ -1,9 +1,10 @@
 {
     "require": {
-                "php": "^7.4 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "slim/psr7": "^1.6",
         "respect/validation": "^2.3",
         "slim/slim": "4.*",
-        "tuupola/cors-middleware": "^1.4"
+        "tuupola/cors-middleware": "^1.4",
+        "bref/bref": "^2.1"
     }
 }

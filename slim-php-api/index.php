@@ -5,8 +5,8 @@ use Slim\Factory\AppFactory;
 use Respect\Validation\Validator as v;
 use Tuupola\Middleware\CorsMiddleware;
 
-require __DIR__ . '/../vendor/autoload.php';
-require "../db/index.php";
+require __DIR__ . '/./vendor/autoload.php';
+require "./db/index.php";
 
 
 $app = AppFactory::create();

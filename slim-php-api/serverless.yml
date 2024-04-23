@@ -1,0 +1,21 @@
+service: freight-genie-slimphp-api
+provider:
+    name: aws
+    region: us-east-1
+    profile: dev
+    memorySize: 256
+ 
+functions:
+    web:
+        handler: index.php
+        runtime: php-83-fpm
+        events:
+            -   httpApi: '*'
+ 
+package:
+    patterns: # Exclude files from deployment
+        - '!node_modules/**'
+        - '!tests/**'
+ 
+plugins:
+    - ./vendor/bref/bref
