@@ -30,7 +30,6 @@ $app->addRoutingMiddleware();
 // error handling middleware
 $app->addErrorMiddleware(true, true, true);
 
-
 $app->options('/{routes:.*}', function (Request $request, Response $response) {
     // CORS Pre-Flight OPTIONS Request Handler
     return $response;
@@ -59,6 +58,7 @@ $app->post('/quotes/all', function (Request $request, Response $response) {
     return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
 });
 
+// process quote request
 $app->post('/quote/request', function (Request $request, Response $response) {
     // get body data
     $data = $request->getParsedBody();
