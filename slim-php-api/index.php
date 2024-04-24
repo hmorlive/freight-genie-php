@@ -11,11 +11,6 @@ require "./db/index.php";
 
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response) {
-    $response->getBody()->write("Welcome to the Freight API");
-    return $response;
-});
-
 // CORS Middleware setup
 $app->add(new Tuupola\Middleware\CorsMiddleware([
     "origin" => ["*"], // Adjust this to be more restrictive as needed
