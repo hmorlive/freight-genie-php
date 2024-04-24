@@ -6,7 +6,7 @@ use Respect\Validation\Validator as v;
 use Tuupola\Middleware\CorsMiddleware;
 
 require __DIR__ . '/./vendor/autoload.php';
-# require "./db/index.php";
+require "./db/index.php";
 
 
 $app = AppFactory::create();

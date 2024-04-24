@@ -6,8 +6,7 @@ provider:
     name: aws
     region: us-east-1
     profile: dev
-    memorySize: 256
-    timeout: 15
+    timeout: 30
     iamRoleStatements:
         - Effect: "Allow"
           Action:
@@ -16,7 +15,7 @@ provider:
           Resource: ${env:AP_ARN}
     vpc:
         securityGroupIds:
-            - Ref: EfsSecurityGroup
+            - ${env:SECURITY_GROUP_ID}
         subnetIds:
             - ${env:SUBNET_ID}
     httpApi:
@@ -41,17 +40,6 @@ functions:
         fileSystemConfig:
             arn: ${env:AP_ARN}
             localMountPath: /mnt/efs
-
-resources:
-    Resources:
-        EfsSecurityGroup:
-            Type: AWS::EC2::SecurityGroup
-            Properties:
-                VpcId: ${env:VPC_ID}
-                GroupDescription: "Security group for EFS mount target"
-                SecurityGroupIngress:
-                    - IpProtocol: "-1"
-                      CidrIp: 10.0.0.0/16
 
 package:
     patterns: # Exclude files from deployment
