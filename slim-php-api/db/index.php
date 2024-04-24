@@ -3,7 +3,7 @@
 use PDO;
 
 function getDB() {
-    $path = __DIR__ . '/mnt/efs/quotes-db.sqlite';
+    $path = '/mnt/efs/quotes-db.sqlite';
     $dsn = "sqlite:$path";
 
     $options = [
